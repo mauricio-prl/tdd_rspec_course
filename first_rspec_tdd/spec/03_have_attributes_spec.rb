@@ -1,6 +1,6 @@
 require 'person'
 
-RSpec.describe Person do
+RSpec.describe Person, type: 'collection' do
 	subject { described_class.new }
 
 	it 'have_attributes' do

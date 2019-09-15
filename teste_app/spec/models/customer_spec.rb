@@ -7,16 +7,17 @@ RSpec.describe Customer, type: :model do
 		it 'should create a customer' do
 			# customer = customers(:fulano)  #fixtures
 			customer = create(:customer) 	#FactoryBot
-
+			# customer1 = create(:customer) 	# just for test sequence
+			
 			expect(customer.name).to match(/(?<name>[A-Z]\w+)/)
 			expect(customer.email).to match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/)
+			expect(customer.address).to match(/(?<adress>\d+\s.+)/)
 		end
 
 		it 'should overwrite a customer name' do
 			customer = create(:customer, name: 'Mauricio') 	#FactoryBot
 
 			expect(customer.name).to eq('Mauricio')
-			expect(customer.email).to match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/)
 		end
 
 		it 'should create a customer calling :user' do
@@ -24,6 +25,7 @@ RSpec.describe Customer, type: :model do
 
 			expect(customer.name).to match(/(?<name>[A-Z]\w+)/)
 			expect(customer.email).to match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/)
+			expect(customer.address).to match(/(?<adress>\d+\s.+)/)
 		end
 
 		it 'should create a not vip customer' do
@@ -42,9 +44,9 @@ RSpec.describe Customer, type: :model do
 
 		it 'should bring all attributes from customer' do
 			attrs = attributes_for(:customer)
-			puts attrs
+			# puts attrs
 			customer = Customer.create(attrs)
-			puts customer.attributes
+			# puts customer.attributes
 			expect(customer).to have_attributes(attrs)
 		end
 
@@ -54,5 +56,37 @@ RSpec.describe Customer, type: :model do
 		end
 
 		it { expect{ create(:customer) }.to change{ Customer.all.size }.by(1) }
+
+		describe 'traits' do
+			context 'not vip' do
+				it 'should create a male customer' do
+					customer = create(:customer_male)
+
+					expect(customer.gender).to eq('male')
+				end
+
+				it 'should create a female customer' do
+					customer = create(:customer_female)
+
+					expect(customer.gender).to eq('female')
+				end			
+			end
+
+			context 'vip' do
+				it 'should create a vip and male customer' do
+					customer = create(:customer_male_vip)
+
+					expect(customer.gender).to eq('male')
+					expect(customer.vip?).to be_truthy
+				end
+
+				it 'should create a vip and female customer' do
+					customer = create(:customer_female_vip)
+
+					expect(customer.gender).to eq('female')
+					expect(customer.vip?).to be_truthy
+				end
+			end
+		end
 	end
 end

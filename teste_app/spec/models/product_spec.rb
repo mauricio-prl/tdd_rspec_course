@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-
   context 'valid with: description, price and category.' do
   	subject { create(:product) }
 

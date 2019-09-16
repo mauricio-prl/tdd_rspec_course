@@ -2,7 +2,7 @@ FactoryBot.define do
 	factory :customer, aliases: [:user] do   #we can also call the factory by user
 		name { Faker::Name.name }
 		# email { Faker::Internet.email }
-		email { name.downcase.gsub(' ', '_') + '@email.com' }
+		email { name.downcase.gsub(' ', '_').gsub("'", "") + '@email.com' }
 		address { Faker::Address.street_address }
 		vip { false }
 		days_to_pay { 0 }

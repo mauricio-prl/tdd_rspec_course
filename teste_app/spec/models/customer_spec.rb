@@ -1,3 +1,4 @@
+# Yes it's a really mess, but it's for learning process
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
@@ -88,6 +89,13 @@ RSpec.describe Customer, type: :model do
 				end
 			end
 		end
+
+	  it 'has_many orders' do
+	  	customer = create(:customer, :with_orders)
+	  	# p customer
+	  	# p customer.orders
+	  	expect(customer.orders.count).to eq(3)
+ 		end
 
 		describe 'travel_to' do
 			it { travel_to Time.zone.local(2004, 11, 24, 01, 04, 44) do

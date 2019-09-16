@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  it 'belongs_to customer' do
-  	order = create(:order)
-  	# p order
-  	# p order.customer
-  	expect(order.customer).to be_kind_of(Customer)
+  context 'associations' do
+  	# order = create(:order)
+  	# # p order
+  	# # p order.customer
+  	# expect(order.customer).to be_kind_of(Customer)
+    it { is_expected.to belong_to(:customer) }
+  end
+
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:description) }
+    it { is_expected.to validate_presence_of(:customer) }
   end
 
   it 'has a list of 3 orders' do
@@ -16,12 +22,5 @@ RSpec.describe Order, type: :model do
   	expect(descriptions[0]).to eq('Test description.')
   	expect(descriptions[1]).to eq('Test description.')
   	expect(descriptions[2]).to eq('Test description.')
-  end
-
-  it 'has_many customers' do
-  	customer = create(:customer, :with_orders)
-  	# p customer
-  	# p customer.orders
-  	expect(customer.orders.count).to eq(3)
   end
 end

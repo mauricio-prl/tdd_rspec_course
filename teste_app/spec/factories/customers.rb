@@ -4,6 +4,7 @@ FactoryBot.define do
 		# email { Faker::Internet.email }
 		email { name.downcase.gsub(' ', '_').gsub("'", "") + '@email.com' }
 		address { Faker::Address.street_address }
+		gender { ['male', 'female'].sample }
 		vip { false }
 		days_to_pay { 0 }
 

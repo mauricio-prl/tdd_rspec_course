@@ -9,7 +9,7 @@ RSpec.describe Category, type: :model do
 	end
 
 	context 'validates' do
-		it { is_expected.to validate_presence_of(:description) }
+		it { is_expected.to validate_presence_of(:description) } #shoulda metchers
 	end
 
 	context 'associations' do

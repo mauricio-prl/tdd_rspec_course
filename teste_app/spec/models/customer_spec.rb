@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-	describe 'create' do
+	describe 'create with FactoryBot' do
 		# fixtures :customers
 		# fixtures :all
 		it 'should create a customer' do

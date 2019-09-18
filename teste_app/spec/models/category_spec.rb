@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
 	context 'valid' do
-		subject { create(:category) }
+		subject { build(:category) }
 
 		it { is_expected.to be_valid }
 		it { is_expected.to be_an_instance_of(described_class) }

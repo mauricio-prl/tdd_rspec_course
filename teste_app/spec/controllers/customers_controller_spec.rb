@@ -30,16 +30,31 @@ RSpec.describe CustomersController, type: :controller do
 	end
 
 	describe '#create' do
-		let(:customer_params) { attributes_for(:customer) }
-		let(:member) { create(:member) }
-		let(:response_post) { post :create, params: { customer: customer_params } }
-		before { sign_in member }
+		context 'valid attributes' do
+			let(:customer_params) { attributes_for(:customer) }
+			let(:member) { create(:member) }
+			before { sign_in member }
+			let(:response_post) { post :create, params: { customer: customer_params } }
 
-		it { expect{ response_post }.to change(Customer, :count).by(1) }
+			it { expect{ response_post }.to change(Customer, :count).by(1) }
 
-		it 'tests flash notice' do
-			response_post
-			expect(flash[:notice]).to match(/successfully created/) 
+			it 'tests flash notice' do
+				response_post
+				expect(flash[:notice]).to match(/successfully created/) 
+			end
+		end
+
+		context 'invalid attributes' do
+			let(:customer_params) { attributes_for(:customer, address: nil) }
+			let(:member) { create(:member) }
+			before { sign_in member }
+			let(:response_post) { post :create, params: { customer: customer_params } }
+
+			it { expect{ response_post }.not_to change(Customer, :count) }
 		end
 	end
+
+	# describe 'routes' do
+	# 	it { is_expected.to route(:get, '/customers').to(action: :index) }
+	# end
 end

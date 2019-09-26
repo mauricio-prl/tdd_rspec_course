@@ -59,6 +59,16 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (11.0.1)
+    capybara (3.29.0)
+      addressable
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (~> 1.5)
+      xpath (~> 3.2)
+    childprocess (2.0.0)
+      rake (< 13.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -158,6 +168,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    regexp_parser (1.6.0)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -179,6 +190,7 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
     ruby_dep (1.5.0)
+    rubyzip (1.2.4)
     safe_yaml (1.0.5)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -191,6 +203,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    selenium-webdriver (3.142.4)
+      childprocess (>= 0.5, < 3.0)
+      rubyzip (~> 1.2, >= 1.2.2)
     shoulda-matchers (4.1.2)
       activesupport (>= 4.2.0)
     spring (2.1.0)
@@ -231,6 +246,8 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    xpath (3.2.0)
+      nokogiri (~> 1.8)
 
 PLATFORMS
   ruby
@@ -238,6 +255,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
+  capybara
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails
@@ -251,6 +269,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails (~> 3.8)
   sass-rails (~> 5.0)
+  selenium-webdriver
   shoulda-matchers
   spring
   spring-commands-rspec

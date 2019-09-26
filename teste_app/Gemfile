@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'capybara'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
@@ -22,6 +23,7 @@ group :development, :test do
   gem 'httparty'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.8'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'vcr'
   gem 'webmock'

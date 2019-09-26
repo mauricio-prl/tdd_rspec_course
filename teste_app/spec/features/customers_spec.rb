@@ -2,7 +2,7 @@ require 'rails_helper'
 require_relative '../support/new_customer_form.rb'
 
 RSpec.feature "Customers", type: :feature, js: true do
- let(:new_customer_form) { NewCustomerForm.new }
+  let(:new_customer_form) { NewCustomerForm.new }
 
   it 'Visit index page' do
     visit(customers_path)
@@ -37,13 +37,14 @@ RSpec.feature "Customers", type: :feature, js: true do
     expect(find('#my-div').find('h1')).to have_content('Yes!')
   end
 
-  # it 'Creates a Customer - Page Object Pattern' do
-  #   new_customer_form.login.visit_page.fill_in_with(
-  #     name: Faker::Name.name,
-  #     email: Faker::Internet.email,
-  #     address: Faker::Address.street_address
-  #   ).submit
+  it 'Creates a Customer - Page Object Pattern' do
+    new_customer_form.login.visit_page.fill_in_with(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      gender: ['male', 'female'].sample,
+      address: Faker::Address.street_address
+    ).submit
 
-  #   expect(page).to have_content('Customer was successfully created.')
-  # end
+    expect(page).to have_content('Customer was successfully created.')
+  end
 end

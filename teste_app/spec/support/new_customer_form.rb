@@ -7,6 +7,8 @@ class NewCustomerForm
   def login
     member = create(:member)
     login_as(member, scope: :member)
+
+    self
   end
 
   def visit_page
@@ -18,6 +20,7 @@ class NewCustomerForm
   def fill_in_with(params = {})
      fill_in('Name', with: params.fetch(:name, Faker::Name.name))
      fill_in('Email', with: params.fetch(:email, Faker::Internet.email))
+     fill_in('Gender', with: params.fetch(:email, ['male', 'female'].sample))
      fill_in('Address', with: params.fetch(:address, Faker::Address.street_address))
      
      self

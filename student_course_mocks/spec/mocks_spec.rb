@@ -38,5 +38,10 @@ RSpec.describe Student do
 				student.foo(123)
 			}
 		end
+
+		it 'is a simple test' do
+			expect(student).to receive(:valid?).and_return(true)
+			student.valid?
+		end
 	end
 end

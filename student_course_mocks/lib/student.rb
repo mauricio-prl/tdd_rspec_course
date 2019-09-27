@@ -10,4 +10,7 @@ class Student
 
 	def bar
 	end 
+
+  def valid?
+  end
 end

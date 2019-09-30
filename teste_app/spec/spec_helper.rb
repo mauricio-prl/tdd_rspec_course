@@ -2,6 +2,7 @@
 require 'capybara/rails'
 require 'vcr'
 require 'webmock/rspec'
+require "json_matchers/rspec"
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
@@ -19,6 +20,8 @@ end
 
 Capybara.javascript_driver = :chrome
 Capybara.default_max_wait_time = 5
+
+JsonMatchers.schema_root = "spec/support/api/schemas"
 
 RSpec.configure do |config|
   config.before(:suite) do

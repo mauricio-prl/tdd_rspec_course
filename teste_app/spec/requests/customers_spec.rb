@@ -100,4 +100,12 @@ RSpec.describe "Customers", type: :request do
       end
     end
   end
+
+  describe 'JSON Schemas' do
+    it 'should be in the customer schema' do
+      get '/customers/1.json'
+
+      expect(response).to match_response_schema('customer')
+    end
+  end
 end

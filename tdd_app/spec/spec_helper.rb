@@ -6,7 +6,7 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.javascript_driver = :chrome
-Capybara.default_max_wait_time = 3
+Capybara.default_max_wait_time = 4
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

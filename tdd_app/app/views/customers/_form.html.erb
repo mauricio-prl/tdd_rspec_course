@@ -12,7 +12,7 @@
   <%= f.file_field :avatar %>
 
   <%= f.label :smolker %>
-  <% { 'S': 'Sim', 'N': 'Não' }.each do |key, value| %>
+  <% { 'Y': 'Yes', 'N': 'No' }.each do |key, value| %>
     <%= f.radio_button :smolker, key %> <%= value %> <br />
   <% end %>  
 

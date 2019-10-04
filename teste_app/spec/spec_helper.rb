@@ -1,5 +1,5 @@
 # Webmock gem
-require 'capybara/rails'
+require 'capybara/rspec'
 require 'vcr'
 require 'webmock/rspec'
 require "json_matchers/rspec"

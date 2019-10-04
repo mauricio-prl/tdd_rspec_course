@@ -9,23 +9,16 @@ RSpec.describe CustomersController, type: :controller do
 	end
 
 	describe '#show' do
-		context "when user isn't a logged member" do
-			let(:customer) { create(:customer) }
-			it { get :show, params: { id: customer.id }; expect(response).to have_http_status(302) }
-		end 
+		let(:customer) { create(:customer) }
+		let(:member) { create(:member) }
+		before { sign_in member }
 
-		context 'when user is a logged member' do
-			let(:customer) { create(:customer) }
-			let(:member) { create(:member) }
-			before { sign_in member }
+		it { get :show, params: { id: customer.id }; expect(response).to have_http_status(200) }
+		it { get :show, params: { id: customer.id }; expect(response).to render_template(:show) }
 
-			it { get :show, params: { id: customer.id }; expect(response).to have_http_status(200) }
-			it { get :show, params: { id: customer.id }; expect(response).to render_template(:show) }
-
-			it 'tests json format' do
-				get :show, format: :json, params: { id: customer.id }
-				expect(response.content_type).to eq('application/json')
-			end
+		it 'tests json format' do
+			get :show, format: :json, params: { id: customer.id }
+			expect(response.content_type).to eq('application/json')
 		end
 	end
 
